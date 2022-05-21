@@ -4,9 +4,9 @@ const { Schema, model } = require('mongoose');
 const thoughtsSchema = new Schema(
   {
     thoughtText: {type: String, required:true},
-    timestamps: { createdAt: 'addedAt'},
+    createdAt :{type : Date , default : Date.now},
     username : {type: String, required : true},
-    // reactions: [{ type: Schema.Types.ObjectId, ref: 'reaction' }],
+    reactions: [{ type: Schema.Types.ObjectId, ref: 'reactions' }],
   },
   {
     toJSON: {
@@ -16,12 +16,12 @@ const thoughtsSchema = new Schema(
   }
 );
 
-// Create a virtual property `commentCount` that gets the amount of comments per post
-thoughtsSchema.virtual('commentCount').get(function () {
-  return this.comments.length;
+
+thoughtsSchema.virtual('reactionsCount').get(function () {
+  return this.reactions.length;
 });
 
 // Initialize our Post model
-const Post = model('post', postSchema);
+const Thoughts = model('thoughts', thoughtsSchema);
 
-module.exports = Post;
+module.exports = Thoughts;

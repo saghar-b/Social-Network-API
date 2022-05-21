@@ -20,20 +20,35 @@ const userSchema = new mongoose.Schema({
       "Please fill a valid email address",
     ],
   },
-  thoughts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'thoughts' }],
-});
+  thoughts: [
+    { type: mongoose.Schema.Types.ObjectId,
+    ref: 'thoughts' }],
 
-// Create a virtual property `commentCount` that gets the amount of comments per post
+    friends :[
+      {type : mongoose.Schema.Types.ObjectId,
+      ref : "User"
+      }
+    ]
+},{
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
+}
+,);
+
+
 userSchema.virtual('thoughtsCount').get(function () {
   return this.thoughts.length;
 });
 
-// Using mongoose.model() to compile a model based on the schema
-// 'Item' is the name of the model
-// grocerySchema is the name of the schema we are using to create a new instance of the model
+userSchema.virtual('friendsCount').get(function () {
+  return this.friends.length;
+});
+
 const User = mongoose.model('User', userSchema);
 
-// Will add data only if collection is empty to prevent duplicates
+
 User.find({}).exec((err, collection) => {
   if (collection.length === 0) {
     User.insertMany(
