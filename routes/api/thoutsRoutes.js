@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Thought, User, Reactions } = require('../../models');
+const { Thought, User } = require('../../models');
 
 
 // create a new Thought

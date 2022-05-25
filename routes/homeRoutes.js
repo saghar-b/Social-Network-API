@@ -1,6 +1,6 @@
 
 const router = require('express').Router();
-const { User, Thought, Reactions } = require('../models');
+const { User, Thought } = require('../models');
 const Thoughts = require('../models/Thought');
 
 router.get('/users', (req, res) => {
