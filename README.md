@@ -15,7 +15,7 @@ Here are some guidelines to help you get started:
 1. Clone the project in your laptop  
 2. make sure you installed Node on your visual studio 
 3.  Run the `npm i` comand in your terminal 
-4.  run the `node server.js`in terminal
+4  run the `node server.js`in terminal
 11. start insomnia GET `localhost:3001/api/users` and keep continue for the rest 
 
 ## My work
