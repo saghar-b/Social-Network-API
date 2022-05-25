@@ -55,9 +55,9 @@ User.find({}).exec((err, collection) => {
       [
         { username: 'saghar', email: "saghar@gmail.com "},
         { username: 'pegah', email: "pegah@gmail.com " },
-        { username: 'saba', email: "saba@gmail.com " },
-        { username: 'toloo', email: "toloo@gmail.com " },
-        { username: 'jeff', email: "jeff@gmail.com " },
+        // { username: 'saba', email: "saba@gmail.com " },
+        // { username: 'toloo', email: "toloo@gmail.com " },
+        // { username: 'jeff', email: "jeff@gmail.com " },
         
       ],
       (insertError, insertedUsers) => {

@@ -1,6 +1,7 @@
 
 const router = require('express').Router();
 const { User, Thought, Reactions } = require('../models');
+const Thoughts = require('../models/Thought');
 
 router.get('/users', (req, res) => {
 
@@ -13,6 +14,8 @@ router.get('/users', (req, res) => {
     }
   });
 });
+
+// get one user by id
 router.get('/users/:userId', (req, res) => {
 
   User.findOne({ _id: req.params.userId })
@@ -37,7 +40,20 @@ router.get('/thoughts', (req, res) => {
     });
   
 });
+// get one thoughts by id
+router.get('/thoughts/:thoughtId', (req, res) => {
 
+  Thoughts.findOne({ _id: req.params.thoughtId })
+    .select('-__v')
+    .populate('reactions')
+    // .populate('friends')
+    .then((thought) =>
+      !thought
+        ? res.status(404).json({ message: 'No user with that ID' })
+        : res.json(thought)
+    )
+    .catch((err) => res.status(500).json(err));
+});
 router.get('/reactions', (req, res) => {
 
   Reactions.find({}, (err, result) => {
